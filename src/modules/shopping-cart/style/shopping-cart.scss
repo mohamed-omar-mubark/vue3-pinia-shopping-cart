@@ -1,4 +1,24 @@
-h1 {
-  text-align: center;
-  padding-bottom: 50px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .title {
+    display: block;
+    text-align: center;
+    margin: 50px 0;
+  }
+
+  .shop-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .single-item {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  }
 }

@@ -1,6 +1,16 @@
 <template>
   <main>
-    <h1>(Vue3 - Vite - Pinia) shopping cart</h1>
+    <div class="container">
+      <strong class="title">(Vue3 - Vite - Pinia) shopping cart</strong>
+
+      <div class="shop-items">
+        <div class="single-item" v-for="item in items" :key="item.id">
+          <span class="item-id">#{{ item.id }} - </span>
+          <span class="item-name">{{ item.name }} - </span>
+          <span class="item-price">${{ item.price }}</span>
+        </div>
+      </div>
+    </div>
 
     <button v-for="item in items" :key="item.id" @click="addToCart(item)">
       {{ item.name }}
