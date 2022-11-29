@@ -3,23 +3,24 @@
     <div class="container">
       <strong class="title">(Vue3 - Vite - Pinia) shopping cart</strong>
 
+      {{ cartTotalPrice }}
+
       <div class="shop-items">
         <div class="single-item" v-for="item in items" :key="item.id">
-          <span class="item-id">#{{ item.id }} - </span>
-          <span class="item-name">{{ item.name }} - </span>
+          <span class="item-name">{{ item.name }} : </span>
           <span class="item-price">${{ item.price }}</span>
+          <div class="actions">
+            <button @click="removeFromCart(item)" type="button">-</button>
+            <button @click="addToCart(item)">+</button>
+          </div>
         </div>
       </div>
     </div>
-
-    <button v-for="item in items" :key="item.id" @click="addToCart(item)">
-      {{ item.name }}
-    </button>
   </main>
 </template>
 
 <script>
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import useCartStore from "@/modules/shopping-cart/store/shopping-cart.store";
 
 export default {
@@ -47,12 +48,12 @@ export default {
     };
   },
 
-  methods: {
-    ...mapActions(useCartStore, ["addToCart"]),
+  computed: {
+    ...mapState(useCartStore, ["cartTotalPrice"]),
+  },
 
-    addItem(item) {
-      this.addToCart(item);
-    },
+  methods: {
+    ...mapActions(useCartStore, ["addToCart", "removeFromCart"]),
   },
 };
 </script>
