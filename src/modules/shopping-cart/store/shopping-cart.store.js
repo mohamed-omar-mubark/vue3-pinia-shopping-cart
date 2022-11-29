@@ -49,5 +49,27 @@ export default defineStore("cart", {
       // save the cart to the local storage
       localStorage.setItem("cart", JSON.stringify(cart));
     },
+
+    // action to remove an item from the cart
+    removeFromCart(item) {
+      let cart = this.cart;
+
+      let found = cart.find((product) => product.id === item.id);
+
+      // if the item is in the cart, decrease the quantity
+      if (found) {
+        found.quantity--;
+
+        // if the quantity is 0, remove the item from the cart
+        if (found.quantity === 0) {
+          cart = cart.filter((product) => product.id !== item.id);
+        }
+      }
+
+      this.cart = cart;
+
+      // save the cart to the local storage
+      localStorage.setItem("cart", JSON.stringify(cart));
+    },
   },
 });
