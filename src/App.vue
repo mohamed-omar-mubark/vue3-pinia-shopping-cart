@@ -3,7 +3,7 @@
     <div class="container">
       <strong class="title">(Vue3 - Vite - Pinia) shopping cart</strong>
 
-      {{ cartTotalPrice }}
+      <strong class="title">Total: ${{ cartTotalPrice }}</strong>
 
       <div class="shop-items">
         <div class="single-item" v-for="item in items" :key="item.id">
@@ -11,6 +11,7 @@
           <span class="item-price">${{ item.price }}</span>
           <div class="actions">
             <button @click="removeFromCart(item)" type="button">-</button>
+            <span class="item-quantity"></span>
             <button @click="addToCart(item)">+</button>
           </div>
         </div>
